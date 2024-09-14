@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import { dummyPosts } from "../data";
-import PostItem from "../components/PostItem";
+import React from "react";
+import { useState } from "react";
+import PostItem from "./PostItem";
 
-const CategoryPosts = () => {
+import { dummyPosts } from "../data";
+
+const Posts = () => {
   const [posts, setPosts] = useState(dummyPosts);
   return (
     <>
@@ -30,4 +32,4 @@ const CategoryPosts = () => {
   );
 };
 
-export default CategoryPosts;
+export default Posts;
