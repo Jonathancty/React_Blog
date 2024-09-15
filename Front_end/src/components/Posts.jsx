@@ -7,7 +7,7 @@ import { dummyPosts } from "../data";
 const Posts = () => {
   const [posts, setPosts] = useState(dummyPosts);
   return (
-    <>
+    <div className="p-8">
       {posts.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {posts.map(({ id, thumbnail, category, title, desc, authorID }) => (
@@ -28,7 +28,7 @@ const Posts = () => {
           No posts found!
         </h2>
       )}
-    </>
+    </div>
   );
 };
 

@@ -5,7 +5,7 @@ import { FaSquareXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 py-8 text-white font-sans">
+    <footer className="bg-gray-800 p-8 text-white font-sans">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center mb-8">
         <ul className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mb-4 md:mb-0">
           <li className="hover:underline">

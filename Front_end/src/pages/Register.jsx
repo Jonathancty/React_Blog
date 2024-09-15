@@ -16,7 +16,7 @@ const Register = () => {
           Sign Up
         </h2>
         <form className="space-y-4">
-          <p className="inline-block mt-4 bg-red-500 w-full rounded-md p-2 text-white shadow-md">
+          <p className="inline-block mt-4 bg-red-500 w-full rounded-md p-2 text-white shadow-md text-center">
             This is an error message
           </p>
           <div>

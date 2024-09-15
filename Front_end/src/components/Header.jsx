@@ -9,7 +9,7 @@ const Header = () => {
       <div className="bg-red-900 p-8 w-full h-auto text-white text-6xl text-center border-b border-white font-playfair font-bold top-0 left-0 z-10">
         Sandwich Kongsi
       </div>
-      <nav className="bg-red-900 p-3 w-full h-auto backdrop-filter backdrop-blur-lg">
+      <nav className="bg-red-900 p-3 w-full h-auto backdrop-filter backdrop-blur-lg px-12">
         <ul className="sm:flex md:space-x-4 justify-between text-white font-playfair font-bold">
           <li>
             <Link to="/">
@@ -17,7 +17,7 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <Link to="/profile" className="block py-2 px-4">
+            <Link to="/profile/adsf" className="block py-2 px-4">
               {" "}
               Profile{" "}
             </Link>
