@@ -20,7 +20,7 @@ const Header = () => {
       <div className="bg-red-900 p-8 w-full h-auto text-white text-6xl text-center border-b border-white font-playfair font-bold top-0 left-0 z-10">
         Sandwich Kongsi
       </div>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center bg-red-900 w-full h-auto">
         <Link
           to="/"
           className=" bg-red-900 block py-2 px-4"
