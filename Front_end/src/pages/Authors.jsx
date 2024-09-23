@@ -1,36 +1,44 @@
-import React, { useState } from "react";
-
-import Avatar1 from "../images/avatar1.jpg";
-import Avatar2 from "../images/avatar2.jpg";
-import Avatar3 from "../images/avatar3.jpg";
-import Avatar4 from "../images/avatar4.jpg";
-import Avatar5 from "../images/avatar5.jpg";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
-const authorData = [
-  { id: 1, avatar: Avatar1, name: "John Doe", posts: 3 },
-  { id: 2, avatar: Avatar2, name: "Jane Doe", posts: 5 },
-  { id: 3, avatar: Avatar3, name: "Alice", posts: 2 },
-  { id: 4, avatar: Avatar4, name: "Bob", posts: 4 },
-  { id: 5, avatar: Avatar5, name: "Charlie", posts: 1 },
-];
+import axios from "axios";
+import Loader from "../components/Loader";
 
 const Authors = () => {
-  const [authors, setAuthors] = useState(authorData);
+  const [authors, setAuthors] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const getAuthors = async () => {
+      setIsLoading(true);
+      try {
+        const response = await axios.get("/api/users");
+        setAuthors(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+      setIsLoading(false);
+    };
+    getAuthors();
+  }, []);
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
   return (
     <section className="py-8 px-4 bg-gray-100 min-h-screen">
       {authors.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {authors.map(({ id, avatar, name, posts }) => {
+          {authors.map(({ _id: id, avatar, name, posts }) => {
             return (
               <Link
-                to={`/posts/users/${id}`}
+                to={`/posts/user/${id}`}
                 key={id}
                 className="block p-4 bg-white rounded-md shadow-md hover:shadow-lg transition duration-300"
               >
                 <div className="flex items-center space-x-4 py-4">
                   <img
-                    src={avatar}
+                    src={`http://localhost:5000/uploads/${avatar}`}
                     alt={`Image of ${name}`}
                     className="w-32 h-32 rounded-md mx-auto object-cover"
                   />

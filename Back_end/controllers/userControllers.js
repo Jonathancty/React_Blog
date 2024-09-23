@@ -19,15 +19,17 @@ const registerUser = async (req, res, next) => {
     const newEmail = email.toLowerCase();
     const emailExists = await User.findOne({ email: newEmail });
     if (emailExists) {
-      return next(new HttpError("Email already exists", 422));
+      return next(new HttpError("Email already exists. ", 422));
     }
 
     if (password1.trim().length < 6) {
-      return next(new HttpError("Password must be at least 6 characters", 422));
+      return next(
+        new HttpError("Password must be at least 6 characters. ", 422)
+      );
     }
 
     if (password1 !== password2) {
-      return next(new HttpError("Passwords do not match", 422));
+      return next(new HttpError("Passwords do not match. ", 422));
     }
 
     const salt = await bcrypt.genSalt(10);
@@ -50,8 +52,8 @@ const registerUser = async (req, res, next) => {
 // UNPROTECTED
 const loginUser = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
-    if (!email || !password) {
+    const { email, password1 } = req.body;
+    if (!email || !password1) {
       return next(new HttpError("Fill in all fields", 422));
     }
     const newEmail = email.toLowerCase();
@@ -59,7 +61,7 @@ const loginUser = async (req, res, next) => {
     if (!user) {
       return next(new HttpError("Invalid credentials", 422));
     }
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await bcrypt.compare(password1, user.password);
     if (!isMatch) {
       return next(new HttpError("Invalid credentials", 422));
     }

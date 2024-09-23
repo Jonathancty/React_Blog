@@ -1,22 +1,42 @@
 import React from "react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+
+import { UserContext } from "../context/userContext";
 
 const Login = () => {
   const [userData, setUserData] = useState({
     email: "",
     password1: "",
   });
+  const [err, setErr] = useState("");
+  const navigate = useNavigate();
+  const { setCurrentUser } = useContext(UserContext);
+  const loginUser = async (e) => {
+    e.preventDefault();
+    setErr("");
+    try {
+      const response = await axios.post("/api/users/login", userData);
+      const user = await response.data;
+      setCurrentUser(user);
+      navigate("/");
+    } catch (error) {
+      setErr(error.response.data.message);
+    }
+  };
   return (
     <section className="flex justify-center items-center min-h-screen bg-gray-100 py-8">
       <div className="w-full max-w-md bg-white rounded-md shadow-md p-8">
         <h2 className="text-2xl font-playfair font-semibold text-center mb-6">
           Sign In
         </h2>
-        <form className="space-y-4">
-          <p className="inline-block mt-4 bg-red-500 w-full rounded-md p-2 text-white shadow-md text-center">
-            This is an error message
-          </p>
+        <form className="space-y-4" onSubmit={loginUser}>
+          {err && (
+            <p className="inline-block mt-4 bg-red-500 w-full rounded-md p-2 text-white shadow-md text-center">
+              {err}
+            </p>
+          )}
           <div>
             <label className="block text-sm font-medium text-gray-700">
               Email Address

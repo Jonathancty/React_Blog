@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Register = () => {
   const [userData, setUserData] = useState({
@@ -9,16 +10,35 @@ const Register = () => {
     password1: "",
     password2: "",
   });
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const registerUser = async (e) => {
+    e.preventDefault();
+    setError("");
+    try {
+      const reponse = await axios.post("/api/users/register", userData);
+      const newUser = await reponse.data;
+      console.log(newUser);
+      if (!newUser) {
+        setError("Could not register user. Please try again. ");
+      }
+      navigate("/");
+    } catch (err) {
+      setError(err.response.data.message);
+    }
+  };
   return (
     <section className="flex justify-center items-center min-h-screen bg-gray-100 py-8">
       <div className="w-full max-w-md bg-white rounded-md shadow-md p-8">
         <h2 className="text-2xl font-playfair font-semibold text-center mb-6">
           Sign Up
         </h2>
-        <form className="space-y-4">
-          <p className="inline-block mt-4 bg-red-500 w-full rounded-md p-2 text-white shadow-md text-center">
-            This is an error message
-          </p>
+        <form className="space-y-4" onSubmit={registerUser}>
+          {error && (
+            <p className="inline-block mt-4 bg-red-500 w-full rounded-md p-2 text-white shadow-md text-center">
+              {error}
+            </p>
+          )}
           <div>
             <label className="block text-sm font-medium text-gray-700">
               Username

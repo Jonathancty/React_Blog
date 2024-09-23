@@ -1,12 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { UserContext } from "../context/userContext";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("Uncategorized");
   const [description, setDescription] = useState("");
   const [thumbnail, setThumbnail] = useState("");
+  const [error, setError] = useState("");
+
+  const { currentUser } = useContext(UserContext);
+  const token = currentUser?.token;
+  const navigate = useNavigate();
+  // redirect to login page for any user who isn't logged in
+  useEffect(() => {
+    if (!token) {
+      navigate("/login");
+    }
+  }, []);
+
   const postCategories = [
     "Agriculture",
     "Business",
@@ -45,16 +60,40 @@ const CreatePost = () => {
     ],
   };
 
+  const createPost = async (e) => {
+    e.preventDefault();
+    const postData = new FormData();
+    postData.set("title", title);
+    postData.set("category", category);
+    postData.set("description", description);
+    postData.set("thumbnail", thumbnail);
+    try {
+      const response = await axios.post(`/api/posts`, postData, {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (response.status === 201) {
+        return navigate("/");
+      }
+    } catch (error) {
+      setError(error.response.data.message);
+    }
+  };
+
   return (
     <section className="min-h-screen bg-gray-100  py-8 flex justify-center items-center">
       <div className="w-full max-w-2xl p-8 bg-white rounded-md shadow-md">
         <h1 className="font-semibold text-2xl mb-6 text-center font-playfair">
           Create Post
         </h1>
-        <p className="inline-block mt-4 bg-red-500 w-full rounded-md p-2 text-white shadow-md text-center">
-          This is an error message
-        </p>
-        <form className="space-y-4">
+        {error && (
+          <p className="inline-block mt-4 bg-red-500 w-full rounded-md p-2 text-white shadow-md text-center">
+            {error}
+          </p>
+        )}
+        <form className="space-y-4" onSubmit={createPost}>
           <input
             type="text"
             placeholder="Title"

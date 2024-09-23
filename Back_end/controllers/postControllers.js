@@ -68,7 +68,7 @@ const createPost = async (req, res, next) => {
 // UNPROTECTED
 const getPosts = async (req, res, next) => {
   try {
-    const posts = await Post.find().sort({ updateAt: -1 });
+    const posts = await Post.find().sort({ updatedAt: -1 });
     res.status(200).json(posts);
   } catch (error) {
     next(new HttpError(error));
