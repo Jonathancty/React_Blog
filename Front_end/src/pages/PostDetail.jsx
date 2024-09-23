@@ -43,9 +43,9 @@ const PostDetail = () => {
               <div className="flex space-x-4 mt-4 md:mt-0">
                 <Link
                   to={`/posts/${post?._id}/edit`}
-                  className="inline-block px-4 py-2 text-sm font-semibold text-white rounded bg-blue-500 hover:bg-blue-700 transition duration-300 "
+                  className="inline-block px-4 py-2 rounded-md shadow-md bg-blue-500 text-white hover:bg-blue-600 transition duration-300 "
                 >
-                  Edit Post
+                  Edit
                 </Link>
                 <DeletePost postId={id} />
               </div>
@@ -61,7 +61,9 @@ const PostDetail = () => {
               className="w-full max-w-2xl h-auto max-h-96 rounded-md shadow-md mx-auto my-8"
             />
           </div>
-          <p dangerouslySetInnerHTML={{ __html: post?.description }}></p>
+          <div className="prose prose-sm font-sans">
+            <div dangerouslySetInnerHTML={{ __html: post?.description }} />
+          </div>
         </div>
       )}
     </section>

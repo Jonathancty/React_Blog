@@ -40,7 +40,7 @@ const Register = () => {
             </p>
           )}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-semibold text-gray-700 font-playfair">
               Username
             </label>
             <input
@@ -55,7 +55,7 @@ const Register = () => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-semibold text-gray-700 font-playfair">
               Email Address
             </label>
             <input
@@ -70,7 +70,7 @@ const Register = () => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-semibold text-gray-700 font-playfair">
               Passowrd
             </label>
             <input
@@ -85,7 +85,7 @@ const Register = () => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-semibold text-gray-700 font-playfair">
               Confirm your password
             </label>
             <input
@@ -101,7 +101,7 @@ const Register = () => {
           </div>
           <button
             type="submit"
-            className="inline-block px-4 py-2 rounded-md bg-gray-500 text-white hover:bg-gray-600 transition duration-300"
+            className="inline-block px-4 py-2 rounded-md bg-gray-500 text-white hover:bg-gray-600 transition duration-300 font-playfair font-semibold"
           >
             {" "}
             Register Now

@@ -129,7 +129,7 @@ const CreatePost = () => {
             />
             <button
               type="submit"
-              className="inline-block px-4 py-2 rounded-md bg-gray-500 text-white hover:bg-gray-600 transition duration-300 mt-4"
+              className="inline-block px-4 py-2 rounded-md bg-gray-500 text-white hover:bg-gray-600 transition duration-300 mt-4 font-playfair font-semibold"
             >
               Create
             </button>

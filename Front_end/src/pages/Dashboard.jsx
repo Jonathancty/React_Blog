@@ -1,10 +1,15 @@
 import React, { useState, useContext, useEffect } from "react";
 import { dummyPosts } from "../data";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../context/userContext";
+import axios from "axios";
+import Loader from "../components/Loader";
+import DeletePost from "../pages/DeletePost";
 
 const Dashboard = () => {
-  const [posts, setPosts] = useState(dummyPosts);
+  const [posts, setPosts] = useState({});
+  const [loading, setLoading] = useState(false);
+  const { id } = useParams();
 
   const { currentUser } = useContext(UserContext);
   const token = currentUser?.token;
@@ -15,6 +20,29 @@ const Dashboard = () => {
       navigate("/login");
     }
   }, []);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get(`/api/posts/user/${id}`, {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setPosts(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+      setLoading(false);
+    };
+    fetchPosts();
+  }, [id]);
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <section className="min-h-screen bg-gray-100 py-8 px-8">
@@ -29,7 +57,7 @@ const Dashboard = () => {
                 >
                   <div className="flex justify-between items-center my-4 px-8">
                     <img
-                      src={post.thumbnail}
+                      src={`http://localhost:5000/uploads/${post.thumbnail}`}
                       alt=""
                       className="w-full max-w-sm h-32 object-cover rounded-md shadow-md"
                     />
@@ -38,23 +66,18 @@ const Dashboard = () => {
                     </h5>
                     <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 mt-4">
                       <Link
-                        to={`/posts/${post.id}`}
+                        to={`/posts/${post._id}`}
                         className="inline-block px-4 py-2 rounded-md shadow-md bg-gray-500 text-white hover:bg-gray-600 transition duration-300"
                       >
                         View
                       </Link>
                       <Link
-                        to={`/posts/${post.id}/edit`}
+                        to={`/posts/${post._id}/edit`}
                         className="inline-block px-4 py-2 rounded-md shadow-md bg-blue-500 text-white hover:bg-blue-600 transition duration-300"
                       >
                         Edit
                       </Link>
-                      <Link
-                        to={`/posts/${post.id}/delete`}
-                        className="inline-block px-4 py-2 rounded-md shadow-md bg-red-500 text-white hover:bg-red-600 transition duration-300"
-                      >
-                        Delete
-                      </Link>
+                      <DeletePost postId={post._id} />
                     </div>
                   </div>
                 </article>
@@ -62,7 +85,9 @@ const Dashboard = () => {
             })}
           </div>
         ) : (
-          <h1>No posts found</h1>
+          <h2 className="font-semibold text-2xl font-sans text-center">
+            No posts found!
+          </h2>
         )}
       </div>
     </section>

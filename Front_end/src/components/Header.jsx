@@ -32,7 +32,10 @@ const Header = () => {
           {currentUser?.id && (
             <ul className="hidden sm:flex md:space-x-4 justify-between text-white font-playfair font-bold">
               <li>
-                <Link to="/profile/adsf" className="block py-2 px-4">
+                <Link
+                  to={`/profile/${currentUser.id}`}
+                  className="block py-2 px-4"
+                >
                   {currentUser?.name}'s Profile
                 </Link>
               </li>

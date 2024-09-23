@@ -44,7 +44,7 @@ const Authors = () => {
                   />
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-gray-800">
+                  <h4 className="text-lg font-semibold text-gray-800 font-playfair">
                     {name}
                   </h4>
                   <p className="text-sm text-gray-600">{posts} Posts</p>

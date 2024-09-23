@@ -80,7 +80,9 @@ const Footer = () => {
         </div>
       </div>
       <div className="text-center mt-4">
-        <p className="text-sm">&copy; 2024 React Blog. All rights reserved.</p>
+        <p className="text-sm">
+          &copy; 2024 Sandwich Kongsi. All rights reserved.
+        </p>
       </div>
     </footer>
   );
