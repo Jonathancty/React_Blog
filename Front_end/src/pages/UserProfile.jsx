@@ -4,6 +4,7 @@ import { FaEdit } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa6";
 import { UserContext } from "../context/userContext";
 import axios from "axios";
+import { react_url } from "../assets/assets";
 
 const UserProfile = () => {
   const [avatar, setAvatar] = useState("");
@@ -98,7 +99,7 @@ const UserProfile = () => {
           <div>
             <div>
               <img
-                src={`http://localhost:5000/uploads/${avatar}`}
+                src={`${react_url}/uploads/${avatar}`}
                 alt=""
                 className="w-48 h-48 rounded-full shadow-md object-cover border-8 border-white mx-auto"
               />

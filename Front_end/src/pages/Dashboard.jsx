@@ -4,6 +4,7 @@ import { UserContext } from "../context/userContext";
 import axios from "axios";
 import Loader from "../components/Loader";
 import DeletePost from "../pages/DeletePost";
+import { react_url } from "../assets/assets";
 
 const Dashboard = () => {
   const [posts, setPosts] = useState({});
@@ -56,7 +57,7 @@ const Dashboard = () => {
                 >
                   <div className="flex justify-between items-center my-4 px-8">
                     <img
-                      src={`http://localhost:5000/uploads/${post.thumbnail}`}
+                      src={`${react_url}/uploads/${post.thumbnail}`}
                       alt=""
                       className="w-full max-w-sm h-32 object-cover rounded-md shadow-md"
                     />

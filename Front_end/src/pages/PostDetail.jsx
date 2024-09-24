@@ -5,6 +5,7 @@ import { UserContext } from "../context/userContext";
 import Loader from "../components/Loader";
 import DeletePost from "./DeletePost";
 import axios from "axios";
+import { react_url } from "../assets/assets";
 
 const PostDetail = () => {
   const { id } = useParams();
@@ -56,7 +57,7 @@ const PostDetail = () => {
           </h1>
           <div>
             <img
-              src={`http://localhost:5000/uploads/${post?.thumbnail}`}
+              src={`${react_url}/uploads/${post?.thumbnail}`}
               alt=""
               className="w-full max-w-2xl h-auto max-h-96 rounded-md shadow-md mx-auto my-8"
             />

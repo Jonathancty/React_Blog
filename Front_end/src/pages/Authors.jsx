@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Loader from "../components/Loader";
+import { react_url } from "../assets/assets";
 
 const Authors = () => {
   const [authors, setAuthors] = useState([]);
@@ -38,7 +39,7 @@ const Authors = () => {
               >
                 <div className="flex items-center space-x-4 py-4">
                   <img
-                    src={`http://localhost:5000/uploads/${avatar}`}
+                    src={`${react_url}/uploads/${avatar}`}
                     alt={`Image of ${name}`}
                     className="w-32 h-32 rounded-md mx-auto object-cover"
                   />

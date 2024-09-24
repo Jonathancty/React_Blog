@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import ReactTimeAgo from "react-time-ago";
 import TimeAgo from "javascript-time-ago";
+import { react_url } from "../assets/assets";
 
 import en from "javascript-time-ago/locale/en.json";
 import ru from "javascript-time-ago/locale/ru.json";
@@ -32,7 +33,7 @@ const PostAuthor = ({ authorID, createdAt }) => {
     >
       <div>
         <img
-          src={`http://localhost:5000/uploads/${author?.avatar}`}
+          src={`${react_url}/uploads/${author?.avatar}`}
           className="h-12 w-12 rounded-full border-2 border-gray-300 "
         />
       </div>

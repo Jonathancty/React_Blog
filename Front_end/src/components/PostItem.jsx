@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PostAuthor from "./PostAuthor";
+import { react_url } from "../assets/assets";
 
 const PostItem = ({
   postID,
@@ -20,7 +21,7 @@ const PostItem = ({
     <div className="container mx-auto p-8">
       <article className="bg-white p-4 rounded-md shadow-md border-2 border-red-800">
         <img
-          src={`http://localhost:5000/uploads/${thumbnail}`}
+          src={`${react_url}/uploads/${thumbnail}`}
           alt={title}
           className="w-full h-48 object-cover mb-4 rounded-md"
         />
