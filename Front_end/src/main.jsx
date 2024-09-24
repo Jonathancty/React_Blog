@@ -1,7 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App from "./App.jsx";
 
 import "./main.css";
 import Layout from "./components/Layout.jsx";
@@ -19,6 +18,7 @@ import Dashboard from "./pages/Dashboard.jsx";
 import EditPost from "./pages/EditPost.jsx";
 import DeletePost from "./pages/DeletePost.jsx";
 import Logout from "./pages/Logout.jsx";
+import About from "./pages/About.jsx";
 import UserContextProvider from "./context/userContext.jsx";
 
 const router = createBrowserRouter([
@@ -44,6 +44,7 @@ const router = createBrowserRouter([
       { path: "posts/:id/edit", element: <EditPost /> },
       { path: "posts/:id/delete", element: <DeletePost /> },
       { path: "logout", element: <Logout /> },
+      { path: "about", element: <About /> },
     ],
   },
 ]);
