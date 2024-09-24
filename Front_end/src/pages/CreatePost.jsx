@@ -4,6 +4,7 @@ import "react-quill/dist/quill.snow.css";
 import { UserContext } from "../context/userContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { react_url_api } from "../assets/assets";
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
@@ -68,7 +69,7 @@ const CreatePost = () => {
     postData.set("description", description);
     postData.set("thumbnail", thumbnail);
     try {
-      const response = await axios.post(`/api/posts`, postData, {
+      const response = await axios.post(`${react_url_api}/posts`, postData, {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${token}`,

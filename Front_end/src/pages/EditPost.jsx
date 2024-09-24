@@ -4,6 +4,7 @@ import "react-quill/dist/quill.snow.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../context/userContext";
 import axios from "axios";
+import { react_url_api } from "../assets/assets";
 
 const EditPost = () => {
   const [title, setTitle] = useState("");
@@ -84,12 +85,16 @@ const EditPost = () => {
     postData.set("description", description);
     postData.set("thumbnail", thumbnail);
     try {
-      const response = await axios.patch(`/api/posts/${id}`, postData, {
-        withCredentials: true,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.patch(
+        `${react_url_api}/posts/${id}`,
+        postData,
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       if (response.status === 200) {
         return navigate("/");
       }

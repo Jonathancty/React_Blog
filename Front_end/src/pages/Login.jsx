@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import { UserContext } from "../context/userContext";
+import { react_url_api } from "../assets/assets";
 
 const Login = () => {
   const [userData, setUserData] = useState({
@@ -17,7 +18,10 @@ const Login = () => {
     e.preventDefault();
     setErr("");
     try {
-      const response = await axios.post("/api/users/login", userData);
+      const response = await axios.post(
+        `${react_url_api}/users/login`,
+        userData
+      );
       const user = await response.data;
       setCurrentUser(user);
       navigate("/");

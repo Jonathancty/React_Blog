@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import ReactTimeAgo from "react-time-ago";
 import TimeAgo from "javascript-time-ago";
-import { react_url } from "../assets/assets";
+import { react_url, react_url_api } from "../assets/assets";
 
 import en from "javascript-time-ago/locale/en.json";
 import ru from "javascript-time-ago/locale/ru.json";
@@ -17,7 +17,7 @@ const PostAuthor = ({ authorID, createdAt }) => {
   useEffect(() => {
     const getAuthor = async () => {
       try {
-        const response = await axios.get(`/api/users/${authorID}`);
+        const response = await axios.get(`${react_url_api}/users/${authorID}`);
         setAuthor(response?.data);
       } catch (error) {
         console.log(error);

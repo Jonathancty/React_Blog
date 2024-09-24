@@ -4,7 +4,7 @@ import { UserContext } from "../context/userContext";
 import axios from "axios";
 import Loader from "../components/Loader";
 import DeletePost from "../pages/DeletePost";
-import { react_url } from "../assets/assets";
+import { react_url, react_url_api } from "../assets/assets";
 
 const Dashboard = () => {
   const [posts, setPosts] = useState({});
@@ -25,7 +25,7 @@ const Dashboard = () => {
     const fetchPosts = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`/api/posts/user/${id}`, {
+        const response = await axios.get(`${react_url_api}/posts/user/${id}`, {
           withCredentials: true,
           headers: {
             Authorization: `Bearer ${token}`,

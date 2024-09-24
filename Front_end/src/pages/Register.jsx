@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { react_url_api } from "../assets/assets";
 
 const Register = () => {
   const [userData, setUserData] = useState({
@@ -16,7 +17,10 @@ const Register = () => {
     e.preventDefault();
     setError("");
     try {
-      const reponse = await axios.post("/api/users/register", userData);
+      const reponse = await axios.post(
+        `${react_url_api}/users/register`,
+        userData
+      );
       const newUser = await reponse.data;
       console.log(newUser);
       if (!newUser) {

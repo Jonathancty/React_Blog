@@ -3,6 +3,7 @@ import PostItem from "../components/PostItem";
 import axios from "axios";
 import Loader from "../components/Loader";
 import { useParams } from "react-router-dom";
+import { react_url_api } from "../assets/assets";
 
 const AuthorPosts = () => {
   const [posts, setPosts] = useState([]);
@@ -13,7 +14,7 @@ const AuthorPosts = () => {
     const fetchPosts = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get(`/api/posts/user/${id}`);
+        const response = await axios.get(`${react_url_api}/posts/user/${id}`);
         setPosts(response?.data);
       } catch (error) {
         console.log(error);

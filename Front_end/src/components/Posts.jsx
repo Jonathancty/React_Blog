@@ -3,6 +3,7 @@ import { useState } from "react";
 import PostItem from "./PostItem";
 import axios from "axios";
 import Loader from "./Loader";
+import { react_url_api } from "../assets/assets";
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
@@ -12,7 +13,7 @@ const Posts = () => {
     const fetchPosts = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get("/api/posts");
+        const response = await axios.get(`${react_url_api}/posts`);
         setPosts(response?.data);
       } catch (error) {
         console.log(error);

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Loader from "../components/Loader";
-import { react_url } from "../assets/assets";
+import { react_url, react_url_api } from "../assets/assets";
 
 const Authors = () => {
   const [authors, setAuthors] = useState([]);
@@ -12,7 +12,7 @@ const Authors = () => {
     const getAuthors = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get("/api/users");
+        const response = await axios.get(`${react_url_api}/users`);
         setAuthors(response.data);
       } catch (error) {
         console.log(error);

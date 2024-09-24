@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { UserContext } from "../context/userContext";
 import axios from "axios";
 import Loader from "../components/Loader";
+import { react_url_api } from "../assets/assets";
 
 const DeletePost = ({ postId: id }) => {
   const { currentUser } = useContext(UserContext);
@@ -21,7 +22,7 @@ const DeletePost = ({ postId: id }) => {
   const removePost = async () => {
     setLoading(true);
     try {
-      const response = await axios.delete(`/api/posts/${id}`, {
+      const response = await axios.delete(`${react_url_api}/posts/${id}`, {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${token}`,

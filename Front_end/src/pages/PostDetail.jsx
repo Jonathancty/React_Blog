@@ -5,7 +5,7 @@ import { UserContext } from "../context/userContext";
 import Loader from "../components/Loader";
 import DeletePost from "./DeletePost";
 import axios from "axios";
-import { react_url } from "../assets/assets";
+import { react_url, react_url_api } from "../assets/assets";
 
 const PostDetail = () => {
   const { id } = useParams();
@@ -19,7 +19,7 @@ const PostDetail = () => {
     const getPost = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get(`/api/posts/${id}`);
+        const response = await axios.get(`${react_url_api}/posts/${id}`);
         setPost(response?.data);
       } catch (error) {
         setError(error);
