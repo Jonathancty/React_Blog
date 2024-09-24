@@ -1,5 +1,4 @@
 import React from "react";
-import logo3 from "../images/logo3.png";
 
 const About = () => {
   return (
