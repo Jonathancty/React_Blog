@@ -22,9 +22,6 @@ const About = () => {
             customers' expectations.
           </p>
         </div>
-        <div className="flex justify-center mt-8">
-          <img src={logo3} alt="" className="rounded-full shadow-sm h-36" />
-        </div>
       </div>
     </section>
   );
