@@ -36,11 +36,11 @@ app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, "Front_end/src")));
+app.use(express.static(path.join(__dirname, "Front_end")));
 
 // Catch-all route to serve `main.jsx` for all other routes
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "Front_end/src", "main.jsx"));
+  res.sendFile(path.join(__dirname, "Front_end", "index.html"));
 });
 
 app.use(notFound);
