@@ -12,8 +12,22 @@ const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 const app = express();
 app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
+const allowedOrigins = ["https://sandwich-kongsi.onrender.com"];
+
 app.use(
-  cors({ credentials: true, origin: "https://sandwich-kongsi.onrender.com/" })
+  cors({
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) === -1) {
+        const msg =
+          "The CORS policy for this site does not allow access from the specified Origin.";
+        return callback(new Error(msg), false);
+      }
+      return callback(null, true);
+    },
+    credentials: true,
+  })
 );
 app.use(upload());
 app.use("/uploads", express.static(__dirname + "/uploads"));
