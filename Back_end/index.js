@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const { connect } = require("mongoose");
+const path = require("path");
 require("dotenv").config();
 const upload = require("express-fileupload");
 
