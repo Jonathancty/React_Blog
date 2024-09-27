@@ -59,13 +59,13 @@ const PostDetail = () => {
             className="prose prose-lg max-w-none sm:max-w-2xl text-left font-sans mx-auto"
             dangerouslySetInnerHTML={{ __html: post?.description }}
           />
-          <div>
+          {/* <div>
             <img
               src={`${react_url}/uploads/${post?.thumbnail}`}
               alt=""
               className="w-full max-w-2xl h-auto max-h-96 rounded-md shadow-md mx-auto my-8"
             />
-          </div>
+          </div> */}
         </div>
       )}
     </section>
