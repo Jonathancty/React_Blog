@@ -62,9 +62,10 @@ const PostDetail = () => {
               className="w-full max-w-2xl h-auto max-h-96 rounded-md shadow-md mx-auto my-8"
             />
           </div>
-          <div className="prose prose-sm font-sans mx-auto">
-            <div dangerouslySetInnerHTML={{ __html: post?.description }} />
-          </div>
+          <div
+            className="prose prose-sm font-sans mx-auto"
+            dangerouslySetInnerHTML={{ __html: post?.description }}
+          />
         </div>
       )}
     </section>
