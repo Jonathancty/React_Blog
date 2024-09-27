@@ -63,7 +63,7 @@ const PostDetail = () => {
             />
           </div>
           <div
-            className="prose prose-sm font-sans mx-auto"
+            className="font-sans mx-auto"
             dangerouslySetInnerHTML={{ __html: post?.description }}
           />
         </div>
