@@ -55,6 +55,10 @@ const PostDetail = () => {
           <h1 className="text-3xl font-bold mb-4 font-playfair">
             {post?.title}
           </h1>
+          <div
+            className="prose prose-lg max-w-none sm:max-w-2xl text-left font-sans mx-auto"
+            dangerouslySetInnerHTML={{ __html: post?.description }}
+          />
           <div>
             <img
               src={`${react_url}/uploads/${post?.thumbnail}`}
@@ -62,10 +66,6 @@ const PostDetail = () => {
               className="w-full max-w-2xl h-auto max-h-96 rounded-md shadow-md mx-auto my-8"
             />
           </div>
-          <div
-            className="prose prose-lg max-w-none sm:max-w-2xl text-left font-sans mx-auto"
-            dangerouslySetInnerHTML={{ __html: post?.description }}
-          />
         </div>
       )}
     </section>
